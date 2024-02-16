@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
+use App\Traits\MultiTenantModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\MultiTenantModelTrait;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Warga
- * @package App\Models
  *
  * @OA\Schema(
+ *
  *      @OA\Xml(name="Warga"),
  *      description="Warga Model",
  *      type="object",
  *      title="Warga Model",
+ *
  *      @OA\Property(property="id", type="int"),
  *      @OA\Property(property="no_kk", type="string"),
  *      @OA\Property(property="nik", type="string"),
@@ -40,6 +42,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @OA\Property(property="updated_at", type="string"),
  *      @OA\Property(property="deleted_at", type="string"),
  * )
+ *
  * @property int id
  * @property string no_kk
  * @property string nik
@@ -66,10 +69,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Warga extends Model
 {
-    use HasFactory, SoftDeletes, MultiTenantModelTrait;
+    use HasFactory, MultiTenantModelTrait, SoftDeletes;
 
     protected $table = 'warga';
-	protected $primaryKey = 'id';
+
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -77,24 +81,30 @@ class Warga extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-		'no_kk',
-		'nik',
-		'nama',
-		'jenis_kelamin',
-		'tgl_lahir',
-		'alamat_ktp',
-		'blok',
-		'nomor',
-		'rt',
-		'agama',
-		'pekerjaan',
-		'no_telp',
-		'status_warga',
-		'status_kawin',
-		'status_sosial',
-		'catatan',
-		'kk_pj',
-		'created_by',
-		'updated_by',
-	];
+        'no_kk',
+        'nik',
+        'nama',
+        'jenis_kelamin',
+        'tgl_lahir',
+        'alamat_ktp',
+        'blok',
+        'nomor',
+        'rt',
+        'agama',
+        'no_telp',
+        'status_pekerjaan',
+        'pekerjaan',
+        'status_warga',
+        'status_kawin',
+        'status_sosial',
+        'catatan',
+        'kk_pj',
+        'created_by',
+        'updated_by',
+    ];
+
+    public function pengurus(): HasOne
+    {
+        return $this->hasOne(Pengurus::class);
+    }
 }

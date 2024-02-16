@@ -14,24 +14,24 @@ class StoreWargaRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'no_kk' => ['nullable', 'numeric'],
-			'nik' => ['required', 'numeric'],
-			'nama' => ['nullable'],
-			'jenis_kelamin' => ['nullable'],
-			'tgl_lahir' => ['nullable'],
-			'alamat_ktp' => ['required'],
-			'blok' => ['required'],
-			'nomor' => ['required', 'numeric'],
-			'rt' => ['required', 'numeric'],
-			'agama' => ['nullable'],
-			'pekerjaan' => ['nullable'],
-			'no_telp' => ['nullable', 'numeric'],
-			'status_warga' => ['nullable'],
-			'status_kawin' => ['nullable'],
-			'status_sosial' => ['nullable'],
-			'catatan' => ['nullable'],
-			'kk_pj' => ['nullable'],
-		];
+            'data.*.no_kk' => ['nullable', 'numeric'],
+            'data.*.nik' => ['required', 'numeric'],
+            'data.*.nama' => ['required', 'required_without_all:no_kk,nik'],
+            'data.*.jenis_kelamin' => ['required', 'required_without_all:no_kk,nik'],
+            'data.*.tgl_lahir' => ['required', 'required_without_all:no_kk,nik'],
+            'data.*.alamat_ktp' => ['required', 'required_without_all:no_kk,nik'],
+            'data.*.blok' => ['required', 'required_without_all:no_kk,nik'],
+            'data.*.nomor' => ['required', 'numeric', 'required_without_all:no_kk,nik'],
+            'data.*.rt' => ['required', 'numeric', 'required_without_all:no_kk,nik'],
+            'data.*.agama' => ['required', 'numeric', 'required_without_all:no_kk,nik'],
+            'data.*.no_telp' => ['nullable', 'numeric', 'required_without_all:no_kk,nik'],
+            'data.*.status_pekerjaan' => ['required', 'required_without_all:no_kk,nik'],
+            'data.*.pekerjaan' => ['nullable', 'required_without_all:no_kk,nik'],
+            'data.*.status_warga' => ['required', 'numeric', 'required_without_all:no_kk,nik'],
+            'data.*.status_kawin' => ['required', 'numeric', 'required_without_all:no_kk,nik'],
+            'data.*.status_sosial' => ['required', 'numeric', 'required_without_all:no_kk,nik'],
+            'data.*.catatan' => ['nullable', 'required_without_all:no_kk,nik'],
+            'data.*.kk_pj' => ['required', 'required_without_all:no_kk,nik'],
+        ];
     }
 }
-

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\App;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Warga>
@@ -16,26 +17,28 @@ class WargaFactory extends Factory
      */
     public function definition(): array
     {
+        App::setLocale('id');
+        $prefix = '08';
+
         return [
-			'no_kk' => $this->faker->text(255),
-			'nik' => $this->faker->text(255),
-			'nama' => $this->faker->text(255),
-			'jenis_kelamin' => $this->faker->numberBetween(1, 10),
-			'tgl_lahir' => null,
-			'alamat_ktp' => $this->faker->text(255),
-			'blok' => $this->faker->text(20),
-			'nomor' => $this->faker->numberBetween(1, 10),
-			'rt' => $this->faker->numberBetween(1, 10),
-			'agama' => $this->faker->randomElement([0,1]),
-			'pekerjaan' => $this->faker->text(255),
-			'no_telp' => $this->faker->text(30),
-			'status_warga' => $this->faker->text(255),
-			'status_kawin' => $this->faker->numberBetween(1, 10),
-			'status_sosial' => $this->faker->text(255),
-			'catatan' => $this->faker->text(255),
-			'kk_pj' => $this->faker->numberBetween(1, 10),
-			'created_by' => $this->faker->text(50),
-			'updated_by' => $this->faker->text(50),
-		];
+            'no_kk' => $this->faker->numberBetween(1000000000000000, 9999999999999999),
+            'nik' => $this->faker->numberBetween(1000000000000000, 9999999999999999),
+            'nama' => $this->faker->name(50),
+            'jenis_kelamin' => $this->faker->randomElement([0, 1]),
+            'tgl_lahir' => $this->faker->date(),
+            'alamat_ktp' => $this->faker->address(50),
+            'blok' => $this->faker->regexify('[A-D]'),
+            'nomor' => $this->faker->numberBetween(1, 30),
+            'rt' => $this->faker->numberBetween(1, 5),
+            'agama' => $this->faker->numberBetween(0, 4),
+            'no_telp' => $prefix.$this->faker->numerify('#########'),
+            'status_pekerjaan' => $this->faker->numberBetween(0, 7),
+            'pekerjaan' => $this->faker->jobTitle(),
+            'status_warga' => $this->faker->numberBetween(0, 1),
+            'status_kawin' => $this->faker->numberBetween(0, 4),
+            'status_sosial' => $this->faker->numberBetween(0, 2),
+            'catatan' => $this->faker->text(30),
+            'kk_pj' => $this->faker->numberBetween(0, 2),
+        ];
     }
 }
