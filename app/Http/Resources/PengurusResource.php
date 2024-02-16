@@ -10,7 +10,7 @@ use App\Enum\StatusKKPJEnum;
 use App\Enum\StatusPekerjaanEnum;
 use App\Enum\StatusSosialEnum;
 use App\Enum\StatusWargaEnum;
-use App\Models\MJabatan;
+use App\Models\Jabatan;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,7 +26,7 @@ class PengurusResource extends JsonResource
     {
         if (! empty($this->jabatan_id)) {
             $jabatanID = json_decode($this->jabatan_id, true);
-            $jabatanData = MJabatan::select('id', 'nama')->whereIn('id', $jabatanID)->get();
+            $jabatanData = Jabatan::select('id', 'nama')->whereIn('id', $jabatanID)->get();
             if ($jabatanData->isNotEmpty($jabatanData)) {
                 $jabatan = MJabatanResource::collection($jabatanData);
             }
