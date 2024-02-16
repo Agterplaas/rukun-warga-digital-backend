@@ -69,6 +69,6 @@ class Pengurus extends Model
 
     public function jabatan(): HasMany
     {
-        return $this->hasMany(MJabatan::class, 'id', 'jabatan_id');
+        return $this->hasMany(Jabatan::class, 'id', 'jabatan_id');
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Master;
 
+use App\Models\Pengurus;
 use App\Traits\MultiTenantModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string updated_at
  * @property string deleted_at
  */
-class MJabatan extends Model
+class Jabatan extends Model
 {
     use HasFactory, MultiTenantModelTrait, SoftDeletes;
 

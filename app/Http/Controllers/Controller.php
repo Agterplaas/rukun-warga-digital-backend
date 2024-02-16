@@ -9,8 +9,8 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="LHKPN API",
- *      description="LHKPN API Documentation",
+ *      title="RW Digital API",
+ *      description="RW Digital API Documentation",
  * )
  *
  * @OA\Server(
