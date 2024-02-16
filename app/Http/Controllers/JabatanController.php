@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMJabatanRequest;
 use App\Http\Resources\MJabatanResource;
-use App\Models\MJabatan;
+use App\Models\Master\Jabatan;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class MJabatanController extends Controller
+class JabatanController extends Controller
 {
     /**
      * @OA\Get(
      *      path="/m-jabatans",
-     *      tags={"MJabatan"},
-     *      summary="List of MJabatan",
+     *      tags={"Master Jabatan"},
+     *      summary="List of Master-Jabatan",
      *
      *      @OA\Parameter(in="query", required=false, name="filter[name]", @OA\Schema(type="string"), example="keyword"),
      *      @OA\Parameter(in="query", required=false, name="filter[keyword]", @OA\Schema(type="string"), example="keyword"),
@@ -40,7 +40,7 @@ class MJabatanController extends Controller
 
         $perPage = $request->query('per_page', $rows);
 
-        $mJabatans = QueryBuilder::for(MJabatan::class)
+        $mJabatans = QueryBuilder::for(Jabatan::class)
             ->allowedFilters([
                 AllowedFilter::callback(
                     'keyword',
@@ -59,8 +59,8 @@ class MJabatanController extends Controller
     /**
      * @OA\Post(
      *      path="/m-jabatans",
-     *      tags={"MJabatan"},
-     *      summary="Store MJabatan",
+     *      tags={"Master Jabatan"},
+     *      summary="Store Master-Jabatan",
      *
      *      @OA\RequestBody(
      *         description="Body",
@@ -94,7 +94,7 @@ class MJabatanController extends Controller
      */
     public function store(StoreMJabatanRequest $request)
     {
-        $mJabatan = MJabatan::create($request->all());
+        $mJabatan = Jabatan::create($request->all());
 
         return $this->sendSuccess(new MJabatanResource($mJabatan), 'Data berhasil disimpan.', 201);
     }
@@ -102,10 +102,10 @@ class MJabatanController extends Controller
     /**
      * @OA\Get(
      *      path="/m-jabatans/{id}",
-     *      tags={"MJabatan"},
-     *      summary="MJabatan details",
+     *      tags={"Master Jabatan"},
+     *      summary="Master Jabatan details",
      *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="MJabatan ID"),
+     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Master-Jabatan ID"),
      *
      *      @OA\Response(
      *          response=200,
@@ -113,7 +113,7 @@ class MJabatanController extends Controller
      *      ),
      * )
      */
-    public function show(MJabatan $mJabatan)
+    public function show(Jabatan $mJabatan)
     {
         return $this->sendSuccess(new MJabatanResource($mJabatan), 'Data berhasil ditampilkan.');
     }
@@ -121,10 +121,10 @@ class MJabatanController extends Controller
     /**
      * @OA\Put(
      *      path="/m-jabatans/{id}",
-     *      tags={"MJabatan"},
-     *      summary="Update MJabatan",
+     *      tags={"Master Jabatan"},
+     *      summary="Update Master Jabatan",
      *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="MJabatan ID"),
+     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Master-Jabatan ID"),
      *
      *      @OA\RequestBody(
      *         description="Body",
@@ -156,7 +156,7 @@ class MJabatanController extends Controller
      *      ),
      * )
      */
-    public function update(StoreMJabatanRequest $request, MJabatan $mJabatan)
+    public function update(StoreMJabatanRequest $request, Jabatan $mJabatan)
     {
         $mJabatan->update($request->all());
 
@@ -166,10 +166,10 @@ class MJabatanController extends Controller
     /**
      * @OA\Delete(
      *      path="/m-jabatans/{id}",
-     *      tags={"MJabatan"},
-     *      summary="MJabatan Removal",
+     *      tags={"Master Jabatan"},
+     *      summary="Master Jabatan Removal",
      *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="MJabatan ID"),
+     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Master-Jabatan ID"),
      *
      *      @OA\Response(
      *          response=204,
@@ -177,7 +177,7 @@ class MJabatanController extends Controller
      *      ),
      * )
      */
-    public function destroy(MJabatan $mJabatan)
+    public function destroy(Jabatan $mJabatan)
     {
         $mJabatan->delete();
 
@@ -187,8 +187,8 @@ class MJabatanController extends Controller
     /**
      * @OA\Get(
      *      path="/m-jabatans/schema",
-     *      tags={"MJabatan"},
-     *      summary="Schema of MJabatan",
+     *      tags={"Master Jabatan"},
+     *      summary="Schema of Master-Jabatan",
      *
      *      @OA\Response(
      *          response=200,
