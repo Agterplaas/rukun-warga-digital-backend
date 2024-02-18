@@ -6,9 +6,7 @@ on:
 
 jobs:
   tests:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
@@ -30,4 +28,25 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
+      run: vendor/bin/pest
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Deploy Using SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        port: 22
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd ~/var/www/rukun-warga-digital
+          git pull origin master
+          git status
+          composer install --optimize-autoloader --prefer-dist --no-dev -o
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          php artisan cache:clear
