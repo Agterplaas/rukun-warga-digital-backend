@@ -15,7 +15,7 @@ class JabatanController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/m-jabatans",
+     *      path="/master/jabatan",
      *      tags={"Master Jabatan"},
      *      summary="List of Master-Jabatan",
      *
@@ -58,7 +58,7 @@ class JabatanController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/m-jabatans",
+     *      path="/master/jabatan",
      *      tags={"Master Jabatan"},
      *      summary="Store Master-Jabatan",
      *
@@ -101,7 +101,7 @@ class JabatanController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/m-jabatans/{id}",
+     *      path="/master/jabatan/{id}",
      *      tags={"Master Jabatan"},
      *      summary="Master Jabatan details",
      *
@@ -120,7 +120,7 @@ class JabatanController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/m-jabatans/{id}",
+     *      path="/master/jabatan/{id}",
      *      tags={"Master Jabatan"},
      *      summary="Update Master Jabatan",
      *
@@ -165,7 +165,7 @@ class JabatanController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/m-jabatans/{id}",
+     *      path="/master/jabatan/{id}",
      *      tags={"Master Jabatan"},
      *      summary="Master Jabatan Removal",
      *
@@ -186,7 +186,7 @@ class JabatanController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/m-jabatans/schema",
+     *      path="/master/jabatan/schema",
      *      tags={"Master Jabatan"},
      *      summary="Schema of Master-Jabatan",
      *

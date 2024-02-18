@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JabatanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,7 @@ Route::post('/pengurus', [\App\Http\Controllers\PengurusController::class, 'stor
 Route::get('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'show']);
 Route::put('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'update']);
 Route::delete('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'destroy']);
+
+route::prefix('/master')->group(function () {
+    Route::resource('jabatan', JabatanController::class);
+});
