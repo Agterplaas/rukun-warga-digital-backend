@@ -15,7 +15,7 @@ class PengurusController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/penguruses",
+     *      path="/pengurus",
      *      tags={"Pengurus"},
      *      summary="List of Pengurus",
      *
@@ -40,7 +40,7 @@ class PengurusController extends Controller
 
         $perPage = $request->query('per_page', $rows);
 
-        $penguruses = QueryBuilder::for(Pengurus::class)
+        $pengurus = QueryBuilder::for(Pengurus::class)
             ->with(['warga', 'jabatan'])
             ->allowedFilters([
                 AllowedFilter::callback(
@@ -54,12 +54,12 @@ class PengurusController extends Controller
             ->paginate($perPage)
             ->appends($request->query());
 
-        return PengurusResource::collection($penguruses);
+        return PengurusResource::collection($pengurus);
     }
 
     /**
      * @OA\Post(
-     *      path="/penguruses",
+     *      path="/pengurus",
      *      tags={"Pengurus"},
      *      summary="Store Pengurus",
      *
@@ -109,7 +109,7 @@ class PengurusController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/penguruses/{id}",
+     *      path="/pengurus/{id}",
      *      tags={"Pengurus"},
      *      summary="Pengurus details",
      *
@@ -128,7 +128,7 @@ class PengurusController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/penguruses/{id}",
+     *      path="/pengurus/{id}",
      *      tags={"Pengurus"},
      *      summary="Update Pengurus",
      *
@@ -182,7 +182,7 @@ class PengurusController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/penguruses/{id}",
+     *      path="/pengurus/{id}",
      *      tags={"Pengurus"},
      *      summary="Pengurus Removal",
      *
@@ -203,7 +203,7 @@ class PengurusController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/penguruses/schema",
+     *      path="/pengurus/schema",
      *      tags={"Pengurus"},
      *      summary="Schema of Pengurus",
      *
@@ -220,7 +220,7 @@ class PengurusController extends Controller
             'name' => 'pengurus',
             'module' => 'Pengurus',
             'primary_key' => 'id',
-            'endpoint' => '/penguruses',
+            'endpoint' => '/pengurus',
             'scheme' => array_values($fields),
         ];
 
