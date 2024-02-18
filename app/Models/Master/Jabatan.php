@@ -51,6 +51,8 @@ class Jabatan extends Model
      */
     protected $fillable = [
         'nama',
+        'created_by',
+        'updated_by'
     ];
 
     public function pengurus(): BelongsTo

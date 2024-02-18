@@ -174,8 +174,9 @@ class PengurusController extends Controller
     {
         $request->merge(['jabatan_id' => json_encode($request->jabatan_id)]);
 
-        // Update the attributes of the existing $pengurus instance
-        $pengurus->update($request->all());
+        $pengurus->warga_id = $request->input('warga_id');
+        $pengurus->jabatan_id = $request->input('jabatan_id');
+        $pengurus->save();
 
         return $this->sendSuccess(new PengurusResource($pengurus), 'Data berhasil disimpan.');
     }

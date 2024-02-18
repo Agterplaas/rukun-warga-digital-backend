@@ -23,9 +23,9 @@ Route::get('/warga', [\App\Http\Controllers\WargaController::class, 'index']);
 Route::post('/warga', [\App\Http\Controllers\WargaController::class, 'store']);
 Route::post('/warga/import', [\App\Http\Controllers\WargaController::class, 'documentExcelImport']);
 Route::get('/warga/{warga}', [\App\Http\Controllers\WargaController::class, 'show']);
-Route::get('/warga/{no_kk}/anggota', [\App\Http\Controllers\WargaController::class, 'showByNoKK']);
 Route::put('/warga/{warga}', [\App\Http\Controllers\WargaController::class, 'update']);
 Route::delete('/warga/{warga}', [\App\Http\Controllers\WargaController::class, 'destroy']);
+Route::get('/warga/{no_kk}/anggota', [\App\Http\Controllers\WargaController::class, 'showByNoKK']);
 
 Route::get('/statistik-umur', [\App\Http\Controllers\StaticWargaController::class, 'hitungStatistikUmur']);
 Route::get('/statistik-warga-rt', [\App\Http\Controllers\StaticWargaController::class, 'hitungWargaRT']);

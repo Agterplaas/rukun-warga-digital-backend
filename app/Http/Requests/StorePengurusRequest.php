@@ -15,7 +15,9 @@ class StorePengurusRequest extends FormRequest
     {
         return [
             'warga_id' => ['required'],
-            'jabatan_id' => ['required'],
+            'jabatan_id' => ['required', 'array'],
+            'created_by' => ['nullable', 'numeric'],
+            'updated_by' => ['nullable', 'numeric'],
         ];
     }
 }

@@ -15,6 +15,8 @@ class StoreMJabatanRequest extends FormRequest
     {
         return [
             'nama' => ['nullable'],
+            'created_by' => ['nullable', 'numeric'],
+            'updated_by' => ['nullable', 'numeric'],
         ];
     }
 }
