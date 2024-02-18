@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 uses(WithFaker::class);
 
 it('can get a list of Warga', function () {
-    $response = $this->get('/api/wargas');
+    $response = $this->get('/api/warga');
 
     $response->assertStatus(200);
 });
@@ -33,14 +33,14 @@ it('can create a Warga', function () {
         'created_by' => $this->faker->text(50),
         'updated_by' => $this->faker->text(50),
     ];
-    $this->postJson('/api/wargas', $data)->assertStatus(201);
+    $this->postJson('/api/warga', $data)->assertStatus(201);
     $this->assertDatabaseHas('warga', $data);
 });
 
 it('can fetch a Warga', function () {
     $warga = Warga::factory()->create();
 
-    $this->getJson('/api/wargas/'.$warga->id)->assertStatus(200);
+    $this->getJson('/api/warga/'.$warga->id)->assertStatus(200);
 });
 
 it('can update a Warga', function () {
@@ -68,13 +68,13 @@ it('can update a Warga', function () {
         'updated_by' => $this->faker->text(50),
     ];
 
-    $this->putJson('/api/wargas/'.$warga->id, $data)->assertStatus(200);
+    $this->putJson('/api/warga/'.$warga->id, $data)->assertStatus(200);
 
     $this->assertDatabaseHas('warga', $data);
 });
 
 it('can delete a Warga', function () {
     $warga = Warga::factory()->create();
-    $this->deleteJson('/api/wargas/'.$warga->id)->assertStatus(204);
+    $this->deleteJson('/api/warga/'.$warga->id)->assertStatus(204);
     $this->assertSoftDeleted('warga', ['id' => $warga->id]);
 });

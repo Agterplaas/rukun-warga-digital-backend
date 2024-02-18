@@ -45,7 +45,7 @@ jobs:
           cd ~/var/www/rukun-warga-digital
           git pull origin master
           git status
-          composer install --optimize-autoloader --prefer-dist --no-dev -o
+          composer install --prefer-dist --no-ansi --no-interaction  --no-progress --no-scripts --no-dev --optimize-autoloader -o
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache

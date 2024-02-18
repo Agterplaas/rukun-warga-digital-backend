@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 uses(WithFaker::class);
 
 it('can get a list of Pengurus', function () {
-    $response = $this->get('/api/penguruses');
+    $response = $this->get('/api/pengurus');
 
     $response->assertStatus(200);
 });
@@ -18,14 +18,14 @@ it('can create a Pengurus', function () {
         'created_by' => $this->faker->text(50),
         'updated_by' => $this->faker->text(50),
     ];
-    $this->postJson('/api/penguruses', $data)->assertStatus(201);
+    $this->postJson('/api/pengurus', $data)->assertStatus(201);
     $this->assertDatabaseHas('pengurus', $data);
 });
 
 it('can fetch a Pengurus', function () {
     $pengurus = Pengurus::factory()->create();
 
-    $this->getJson('/api/penguruses/'.$pengurus->id)->assertStatus(200);
+    $this->getJson('/api/pengurus/'.$pengurus->id)->assertStatus(200);
 });
 
 it('can update a Pengurus', function () {
@@ -38,13 +38,13 @@ it('can update a Pengurus', function () {
         'updated_by' => $this->faker->text(50),
     ];
 
-    $this->putJson('/api/penguruses/'.$pengurus->id, $data)->assertStatus(200);
+    $this->putJson('/api/pengurus/'.$pengurus->id, $data)->assertStatus(200);
 
     $this->assertDatabaseHas('pengurus', $data);
 });
 
 it('can delete a Pengurus', function () {
     $pengurus = Pengurus::factory()->create();
-    $this->deleteJson('/api/penguruses/'.$pengurus->id)->assertStatus(204);
+    $this->deleteJson('/api/pengurus/'.$pengurus->id)->assertStatus(204);
     $this->assertSoftDeleted('pengurus', ['id' => $pengurus->id]);
 });
