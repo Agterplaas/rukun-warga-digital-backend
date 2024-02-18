@@ -1,16 +1,11 @@
 <?php
 
-namespace Tests\Unit;
+use Illuminate\Foundation\Testing\WithFaker;
 
-use PHPUnit\Framework\TestCase;
+uses(WithFaker::class);
 
-class ExampleTest extends TestCase
-{
-    /**
-     * A basic test example.
-     */
-    public function test_that_true_is_true(): void
-    {
-        $this->assertTrue(true);
-    }
-}
+it('returns a successful response', function () {
+    $result = 5;
+
+    expect($result)->toBe(5);
+});

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JabatanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,9 @@ Route::get('/warga', [\App\Http\Controllers\WargaController::class, 'index']);
 Route::post('/warga', [\App\Http\Controllers\WargaController::class, 'store']);
 Route::post('/warga/import', [\App\Http\Controllers\WargaController::class, 'documentExcelImport']);
 Route::get('/warga/{warga}', [\App\Http\Controllers\WargaController::class, 'show']);
-Route::get('/warga/{no_kk}/anggota', [\App\Http\Controllers\WargaController::class, 'showByNoKK']);
 Route::put('/warga/{warga}', [\App\Http\Controllers\WargaController::class, 'update']);
 Route::delete('/warga/{warga}', [\App\Http\Controllers\WargaController::class, 'destroy']);
+Route::get('/warga/{no_kk}/anggota', [\App\Http\Controllers\WargaController::class, 'showByNoKK']);
 
 Route::get('/statistik-umur', [\App\Http\Controllers\StaticWargaController::class, 'hitungStatistikUmur']);
 Route::get('/statistik-warga-rt', [\App\Http\Controllers\StaticWargaController::class, 'hitungWargaRT']);
@@ -41,3 +42,7 @@ Route::post('/pengurus', [\App\Http\Controllers\PengurusController::class, 'stor
 Route::get('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'show']);
 Route::put('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'update']);
 Route::delete('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'destroy']);
+
+route::prefix('/master')->group(function () {
+    Route::resource('jabatan', JabatanController::class);
+});

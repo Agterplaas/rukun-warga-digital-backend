@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class MJabatan
+ * Class Jabatan
  *
  * @OA\Schema(
  *
- *      @OA\Xml(name="MJabatan"),
- *      description="MJabatan Model",
+ *      @OA\Xml(name="Master Jabatan"),
+ *      description="Master Jabatan Model",
  *      type="object",
- *      title="MJabatan Model",
+ *      title="Master Jabatan Model",
  *
  *      @OA\Property(property="id", type="int"),
  *      @OA\Property(property="nama", type="string"),
@@ -51,6 +51,8 @@ class Jabatan extends Model
      */
     protected $fillable = [
         'nama',
+        'created_by',
+        'updated_by'
     ];
 
     public function pengurus(): BelongsTo

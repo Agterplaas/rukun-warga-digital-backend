@@ -10,7 +10,7 @@ use App\Enum\StatusKKPJEnum;
 use App\Enum\StatusPekerjaanEnum;
 use App\Enum\StatusSosialEnum;
 use App\Enum\StatusWargaEnum;
-use App\Models\Jabatan;
+use App\Models\Master\Jabatan;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Resources\Json\JsonResource;
