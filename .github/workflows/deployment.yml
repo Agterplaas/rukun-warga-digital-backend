@@ -29,6 +29,7 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/pest
+      
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -46,6 +47,7 @@ jobs:
           git pull origin master
           git status
           composer install --prefer-dist --no-ansi --no-interaction  --no-progress --no-scripts --no-dev --optimize-autoloader -o
+          php artisan migrate
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
