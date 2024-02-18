@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\DB;
 
 class StaticWargaController extends Controller
 {
+    /**
+     * @OA\Get(
+     *      path="/statistik-umur",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Umur Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungStatistikUmur()
     {
         $warga = Warga::orderBy('rt')->get();
@@ -109,6 +121,18 @@ class StaticWargaController extends Controller
         ];
     }
 
+    /**
+     * @OA\Get(
+     *      path="/statistik-warga-rt",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungWargaRT()
     {
         $residentsByRT = Warga::select('rt', DB::raw('count(*) as total_warga'))
@@ -132,6 +156,18 @@ class StaticWargaController extends Controller
         return response()->json($response);
     }
 
+     /**
+     * @OA\Get(
+     *      path="/statistik-agama-warga",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Agama Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungAgamaPerRt()
     {
         $agamaCountsPerRt = [];
@@ -169,6 +205,18 @@ class StaticWargaController extends Controller
         ];
     }
 
+    /**
+     * @OA\Get(
+     *      path="/statistik-jenis-kelamin-warga",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Jenis Kelamin Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungJumlahJenisKelaminPerRT()
     {
         $jenisKelaminPerRT = [];
@@ -216,6 +264,18 @@ class StaticWargaController extends Controller
         ];
     }
 
+    /**
+     * @OA\Get(
+     *      path="/statistik-jenis-kawin-warga",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Jenis Status Kawin Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungStatusKawinPerRT()
     {
         $statusCounts = Warga::select('rt', 'status_kawin', DB::raw('count(*) as total'))
@@ -270,6 +330,18 @@ class StaticWargaController extends Controller
         return $result;
     }
 
+     /**
+     * @OA\Get(
+     *      path="/statistik-kk-pj-warga",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Jenis Anggota Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungStatusAnggotaPerRT()
     {
         $statusCounts = Warga::select('rt', 'kk_pj', DB::raw('count(*) as total'))
@@ -307,6 +379,18 @@ class StaticWargaController extends Controller
         return $result;
     }
 
+    /**
+     * @OA\Get(
+     *      path="/statistik-status-sosial-warga",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Jenis Status Sosial Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungStatusSosialPerRT()
     {
         $statusCounts = Warga::select('rt', 'status_sosial', DB::raw('count(*) as total'))
@@ -344,6 +428,18 @@ class StaticWargaController extends Controller
         return $result;
     }
 
+    /**
+     * @OA\Get(
+     *      path="/statistik-status-warga",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Jenis Status Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungStatusWargaPerRT()
     {
         $statusCounts = Warga::select('rt', 'status_warga', DB::raw('count(*) as total'))
@@ -380,6 +476,18 @@ class StaticWargaController extends Controller
         return $result;
     }
 
+     /**
+     * @OA\Get(
+     *      path="/statistik-status-pekerjaan-warga",
+     *      tags={"Statistic Warga"},
+     *      summary="Statistic Jumlah Jenis Status Pekerjaan Warga",
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *      ),
+     * )
+     */
     public function hitungStatusPekerjaanPerRT()
     {
         $statusCounts = Warga::select('rt', 'status_pekerjaan', DB::raw('count(*) as total'))

@@ -119,8 +119,8 @@ class WargaController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/audit/{audit}/harta-bangunan/import",
-     *      tags={"Hasil Analisis - Tab Temuan Harta Tidak Bergerak"},
+     *      path="/warga/import",
+     *      tags={"Warga"},
      *      summary="Import data from Excel to SQL table",
      *      security={{"bearerAuth":{}}},
      *
@@ -340,11 +340,11 @@ class WargaController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/warga/{id}",
+     *      path="/warga/{warga}",
      *      tags={"Warga"},
      *      summary="Warga details",
      *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Warga ID"),
+     *      @OA\Parameter(in="path", required=true, name="warga", @OA\Schema(type="integer"), description="Warga ID"),
      *
      *      @OA\Response(
      *          response=200,
@@ -390,11 +390,11 @@ class WargaController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/warga/{id}",
+     *      path="/warga/{warga}",
      *      tags={"Warga"},
      *      summary="Update Warga",
      *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Warga ID"),
+     *      @OA\Parameter(in="path", required=true, name="warga", @OA\Schema(type="integer"), description="Warga ID"),
      *
      *      @OA\RequestBody(
      *         description="Body",
@@ -451,11 +451,11 @@ class WargaController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/warga/{id}",
+     *      path="/warga/{warga}",
      *      tags={"Warga"},
      *      summary="Warga Removal",
      *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Warga ID"),
+     *      @OA\Parameter(in="path", required=true, name="warga", @OA\Schema(type="integer"), description="Warga ID"),
      *
      *      @OA\Response(
      *          response=204,
