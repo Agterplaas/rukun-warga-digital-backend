@@ -46,3 +46,10 @@ Route::delete('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController:
 route::prefix('/master')->group(function () {
     Route::resource('jabatan', JabatanController::class);
 });
+
+Route::get('barang-masuks/schema', [\App\Http\Controllers\BarangMasukController::class, 'schema']);
+Route::resource('barang-masuks', \App\Http\Controllers\BarangMasukController::class);
+Route::get('barang-pinjams/schema', [\App\Http\Controllers\BarangPinjamController::class, 'schema']);
+Route::resource('barang-pinjams', \App\Http\Controllers\BarangPinjamController::class);
+Route::get('barang-hilangs/schema', [\App\Http\Controllers\BarangHilangController::class, 'schema']);
+Route::resource('barang-hilangs', \App\Http\Controllers\BarangHilangController::class);
