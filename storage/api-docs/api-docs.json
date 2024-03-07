@@ -1,0 +1,1948 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RW Digital API",
+        "description": "RW Digital API Documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/barang-masuks": {
+            "get": {
+                "tags": [
+                    "BarangMasuk"
+                ],
+                "summary": "List of BarangMasuk",
+                "operationId": "382606c5e3d5cacf62cca5d57849ec59",
+                "parameters": [
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "filter[keyword]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "name"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "rows",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "BarangMasuk"
+                ],
+                "summary": "Store BarangMasuk",
+                "operationId": "d79732e78f1986e12a5f6e44e292a61b",
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "role_id": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/role_id"
+                                    },
+                                    "jenis_barang": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/jenis_barang"
+                                    },
+                                    "jml_barang": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/jml_barang"
+                                    },
+                                    "catatan": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/catatan"
+                                    },
+                                    "storage": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/storage"
+                                    },
+                                    "kepemilikan": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/kepemilikan"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "role_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "role_id field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jenis_barang": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jenis_barang field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jml_barang": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jml_barang field is required."
+                                                ]
+                                            }
+                                        },
+                                        "catatan": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "catatan field is required."
+                                                ]
+                                            }
+                                        },
+                                        "storage": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "storage field is required."
+                                                ]
+                                            }
+                                        },
+                                        "kepemilikan": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "kepemilikan field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/barang-masuks/{id}": {
+            "get": {
+                "tags": [
+                    "BarangMasuk"
+                ],
+                "summary": "BarangMasuk details",
+                "operationId": "933b84da47a8d42d25178a07b5a2d3a6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BarangMasuk ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "BarangMasuk"
+                ],
+                "summary": "Update BarangMasuk",
+                "operationId": "af270bd55ab6b85e09cbd314fe6fc72f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BarangMasuk ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "role_id": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/role_id"
+                                    },
+                                    "jenis_barang": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/jenis_barang"
+                                    },
+                                    "jml_barang": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/jml_barang"
+                                    },
+                                    "catatan": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/catatan"
+                                    },
+                                    "storage": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/storage"
+                                    },
+                                    "kepemilikan": {
+                                        "$ref": "#/components/schemas/BarangMasuk/properties/kepemilikan"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "role_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "role_id field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jenis_barang": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jenis_barang field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jml_barang": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jml_barang field is required."
+                                                ]
+                                            }
+                                        },
+                                        "catatan": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "catatan field is required."
+                                                ]
+                                            }
+                                        },
+                                        "storage": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "storage field is required."
+                                                ]
+                                            }
+                                        },
+                                        "kepemilikan": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "kepemilikan field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "BarangMasuk"
+                ],
+                "summary": "BarangMasuk Removal",
+                "operationId": "8ed14751800c8b264c0be146a432af4f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BarangMasuk ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Response success no content"
+                    }
+                }
+            }
+        },
+        "/barang-masuks/schema": {
+            "get": {
+                "tags": [
+                    "BarangMasuk"
+                ],
+                "summary": "Schema of BarangMasuk",
+                "operationId": "cda5a097844270c927fec06d1c006701",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/barang-pinjams": {
+            "get": {
+                "tags": [
+                    "BarangPinjam"
+                ],
+                "summary": "List of BarangPinjam",
+                "operationId": "800b60fca2f6e583dada52c5d74f5e00",
+                "parameters": [
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "filter[keyword]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "name"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "rows",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/barang-pinjams/{id}": {
+            "get": {
+                "tags": [
+                    "BarangPinjam"
+                ],
+                "summary": "BarangPinjam details",
+                "operationId": "6f5261029170ced89e4a51559fd83a7d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BarangPinjam ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "BarangPinjam"
+                ],
+                "summary": "Update BarangPinjam",
+                "operationId": "0770fc9125b206ca5bb8245a28a99eea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BarangPinjam ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "acara_id": {
+                                        "$ref": "#/components/schemas/BarangPinjam/properties/acara_id"
+                                    },
+                                    "jenis_barang": {
+                                        "$ref": "#/components/schemas/BarangPinjam/properties/jenis_barang"
+                                    },
+                                    "jml_barang": {
+                                        "$ref": "#/components/schemas/BarangPinjam/properties/jml_barang"
+                                    },
+                                    "catatan": {
+                                        "$ref": "#/components/schemas/BarangPinjam/properties/catatan"
+                                    },
+                                    "storage": {
+                                        "$ref": "#/components/schemas/BarangPinjam/properties/storage"
+                                    },
+                                    "kepemilikan": {
+                                        "$ref": "#/components/schemas/BarangPinjam/properties/kepemilikan"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "acara_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "acara_id field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jenis_barang": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jenis_barang field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jml_barang": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jml_barang field is required."
+                                                ]
+                                            }
+                                        },
+                                        "catatan": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "catatan field is required."
+                                                ]
+                                            }
+                                        },
+                                        "storage": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "storage field is required."
+                                                ]
+                                            }
+                                        },
+                                        "kepemilikan": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "kepemilikan field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "BarangPinjam"
+                ],
+                "summary": "BarangPinjam Removal",
+                "operationId": "4ddac4cda2a0052bf565dc7cbf85b7c7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "BarangPinjam ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Response success no content"
+                    }
+                }
+            }
+        },
+        "/barang-pinjams/schema": {
+            "get": {
+                "tags": [
+                    "BarangPinjam"
+                ],
+                "summary": "Schema of BarangPinjam",
+                "operationId": "4160b6b1f366dcae8b9dbf968bf5ec6b",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/master/jabatan": {
+            "get": {
+                "tags": [
+                    "Master Jabatan"
+                ],
+                "summary": "List of Master-Jabatan",
+                "operationId": "d7272701b798bc56e874fc6358236beb",
+                "parameters": [
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "filter[keyword]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "name"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "rows",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Master Jabatan"
+                ],
+                "summary": "Store Master-Jabatan",
+                "operationId": "70c7be3ba87e22af20dc6afef88fe8e7",
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/master/jabatan/{id}": {
+            "get": {
+                "tags": [
+                    "Master Jabatan"
+                ],
+                "summary": "Master Jabatan details",
+                "operationId": "260c33ed8b047b133fa2962c7cc15ed9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Master-Jabatan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Master Jabatan"
+                ],
+                "summary": "Update Master Jabatan",
+                "operationId": "4210d0b9f9f2baa7722e5a1c5f3674e3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Master-Jabatan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Master Jabatan"
+                ],
+                "summary": "Master Jabatan Removal",
+                "operationId": "e9bb7438a7093c9d0b3e09c546c4fa49",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Master-Jabatan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Response success no content"
+                    }
+                }
+            }
+        },
+        "/master/jabatan/schema": {
+            "get": {
+                "tags": [
+                    "Master Jabatan"
+                ],
+                "summary": "Schema of Master-Jabatan",
+                "operationId": "0f9cef0c5668b704ce94c844ed3228a7",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/pengurus": {
+            "get": {
+                "tags": [
+                    "Pengurus"
+                ],
+                "summary": "List of Pengurus",
+                "operationId": "643577c895f1e926e39e0987004af477",
+                "parameters": [
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "filter[keyword]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "name"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "rows",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pengurus"
+                ],
+                "summary": "Store Pengurus",
+                "operationId": "257fb8a21eb503685c3a931a4abba483",
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "warga_id": {
+                                        "$ref": "#/components/schemas/Pengurus/properties/warga_id"
+                                    },
+                                    "jabatan_id": {
+                                        "$ref": "#/components/schemas/Pengurus/properties/jabatan_id"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "warga_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "warga_id field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jabatan_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jabatan_id field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pengurus/{id}": {
+            "get": {
+                "tags": [
+                    "Pengurus"
+                ],
+                "summary": "Pengurus details",
+                "operationId": "38fe519b529c8bd42eb8f3895a15b842",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Pengurus ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Pengurus"
+                ],
+                "summary": "Update Pengurus",
+                "operationId": "289d6b1cb617697730a242234ad3307f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Pengurus ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "warga_id": {
+                                        "$ref": "#/components/schemas/Pengurus/properties/warga_id"
+                                    },
+                                    "jabatan_id": {
+                                        "$ref": "#/components/schemas/Pengurus/properties/jabatan_id"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "warga_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "warga_id field is required."
+                                                ]
+                                            }
+                                        },
+                                        "jabatan_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "jabatan_id field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pengurus"
+                ],
+                "summary": "Pengurus Removal",
+                "operationId": "2b4e0f94ed1ed2bff9d2e21e222b1bb6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Pengurus ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Response success no content"
+                    }
+                }
+            }
+        },
+        "/pengurus/schema": {
+            "get": {
+                "tags": [
+                    "Pengurus"
+                ],
+                "summary": "Schema of Pengurus",
+                "operationId": "451005837bab0fd246055e7cc34fe32f",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-umur": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Umur Warga",
+                "operationId": "17bd110669260ddb83032579a63960ab",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-warga-rt": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Warga",
+                "operationId": "a1982b47fcd595eccc96b9ba212f8448",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-agama-warga": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Agama Warga",
+                "operationId": "454c8b4bbd8802ce2752e1992f81781c",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-jenis-kelamin-warga": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Jenis Kelamin Warga",
+                "operationId": "fac9f0f8254ba17425481c045de07889",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-jenis-kawin-warga": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Jenis Status Kawin Warga",
+                "operationId": "87c3521a1b95e0e1f30aa3223238dce0",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-kk-pj-warga": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Jenis Anggota Warga",
+                "operationId": "07b9c32891d7e1ddafe6b5c908b9cc64",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-status-sosial-warga": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Jenis Status Sosial Warga",
+                "operationId": "f072abbcd529899567f287ab5b482488",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-status-warga": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Jenis Status Warga",
+                "operationId": "38d84347aa8a51ebacb36fcfceb8b8fd",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/statistik-status-pekerjaan-warga": {
+            "get": {
+                "tags": [
+                    "Statistic Warga"
+                ],
+                "summary": "Statistic Jumlah Jenis Status Pekerjaan Warga",
+                "operationId": "d05ec37cb28dd66ca55ee00a6a5482de",
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/warga": {
+            "get": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "List of Warga",
+                "operationId": "d0da63bc0505db195a84cafa949b8d5d",
+                "parameters": [
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "filter[keyword]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "keyword"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "name"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "rows",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Store Warga",
+                "operationId": "3c7045f9972c4ceead481380483fbca8",
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nik": {
+                                        "$ref": "#/components/schemas/Warga/properties/nik"
+                                    },
+                                    "alamat_ktp": {
+                                        "$ref": "#/components/schemas/Warga/properties/alamat_ktp"
+                                    },
+                                    "blok": {
+                                        "$ref": "#/components/schemas/Warga/properties/blok"
+                                    },
+                                    "nomor": {
+                                        "$ref": "#/components/schemas/Warga/properties/nomor"
+                                    },
+                                    "rt": {
+                                        "$ref": "#/components/schemas/Warga/properties/rt"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nik": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "nik field is required."
+                                                ]
+                                            }
+                                        },
+                                        "alamat_ktp": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "alamat_ktp field is required."
+                                                ]
+                                            }
+                                        },
+                                        "blok": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "blok field is required."
+                                                ]
+                                            }
+                                        },
+                                        "nomor": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "nomor field is required."
+                                                ]
+                                            }
+                                        },
+                                        "rt": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "rt field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/warga/import": {
+            "post": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Import data from Excel to SQL table",
+                "operationId": "36044c52891eb90d60a83fa5ee1708b4",
+                "parameters": [
+                    {
+                        "name": "audit",
+                        "in": "path",
+                        "description": "Audit ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Excel file for data import",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file_template": {
+                                        "description": "Excel file for data import",
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "is_imported": {
+                                        "description": "Set to TRUE to indicate that the data is imported",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK. The data import and storage were successful."
+                    },
+                    "401": {
+                        "description": "Unauthorized. The 'is_imported' parameter must be set to TRUE for using this resource."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity. Invalid input or data could not be processed."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/warga/{warga}": {
+            "get": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Warga details",
+                "operationId": "be7c2560651a6cf83c0a95360b14bbf4",
+                "parameters": [
+                    {
+                        "name": "warga",
+                        "in": "path",
+                        "description": "Warga ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Update Warga",
+                "operationId": "ff9a02d2ffadc54e5df9e6c60a05c3ff",
+                "parameters": [
+                    {
+                        "name": "warga",
+                        "in": "path",
+                        "description": "Warga ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nik": {
+                                        "$ref": "#/components/schemas/Warga/properties/nik"
+                                    },
+                                    "alamat_ktp": {
+                                        "$ref": "#/components/schemas/Warga/properties/alamat_ktp"
+                                    },
+                                    "blok": {
+                                        "$ref": "#/components/schemas/Warga/properties/blok"
+                                    },
+                                    "nomor": {
+                                        "$ref": "#/components/schemas/Warga/properties/nomor"
+                                    },
+                                    "rt": {
+                                        "$ref": "#/components/schemas/Warga/properties/rt"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data sukses disimpan."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nik": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "nik field is required."
+                                                ]
+                                            }
+                                        },
+                                        "alamat_ktp": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "alamat_ktp field is required."
+                                                ]
+                                            }
+                                        },
+                                        "blok": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "blok field is required."
+                                                ]
+                                            }
+                                        },
+                                        "nomor": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "nomor field is required."
+                                                ]
+                                            }
+                                        },
+                                        "rt": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": [
+                                                    "rt field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Warga Removal",
+                "operationId": "d13e6ea422910e8a4ed75ae12489f86d",
+                "parameters": [
+                    {
+                        "name": "warga",
+                        "in": "path",
+                        "description": "Warga ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Response success no content"
+                    }
+                }
+            }
+        },
+        "/warga/{no_kk}/anggota": {
+            "get": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Anggota warga details",
+                "operationId": "7ddb3bb024022a7172a0c75b24545902",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Warga ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BarangMasuk": {
+                "title": "BarangMasuk Model",
+                "description": "BarangMasuk Model",
+                "properties": {
+                    "id": {
+                        "description": "Class BarangMasuk",
+                        "type": "integer"
+                    },
+                    "role_id": {
+                        "type": "integer"
+                    },
+                    "jenis_barang": {
+                        "type": "string"
+                    },
+                    "jml_barang": {
+                        "type": "integer"
+                    },
+                    "catatan": {
+                        "type": "string"
+                    },
+                    "storage": {
+                        "type": "string"
+                    },
+                    "kepemilikan": {
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "type": "integer"
+                    },
+                    "updated_by": {
+                        "type": "integer"
+                    },
+                    "deleted_at": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "BarangMasuk"
+                }
+            },
+            "BarangPinjam": {
+                "title": "BarangPinjam Model",
+                "description": "BarangPinjam Model",
+                "properties": {
+                    "id": {
+                        "description": "Class BarangPinjam",
+                        "type": "integer"
+                    },
+                    "acara_id": {
+                        "type": "integer"
+                    },
+                    "jenis_barang": {
+                        "type": "string"
+                    },
+                    "jml_barang": {
+                        "type": "integer"
+                    },
+                    "catatan": {
+                        "type": "string"
+                    },
+                    "storage": {
+                        "type": "string"
+                    },
+                    "kepemilikan": {
+                        "type": "string"
+                    },
+                    "deleted_at": {
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "type": "integer"
+                    },
+                    "updated_by": {
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "BarangPinjam"
+                }
+            },
+            "Jabatan": {
+                "title": "Master Jabatan Model",
+                "description": "Master Jabatan Model",
+                "properties": {
+                    "id": {
+                        "description": "Class Jabatan",
+                        "type": "integer"
+                    },
+                    "nama": {
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "type": "string"
+                    },
+                    "updated_by": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "deleted_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Master Jabatan"
+                }
+            },
+            "Pengurus": {
+                "title": "Pengurus Model",
+                "description": "Pengurus Model",
+                "properties": {
+                    "id": {
+                        "description": "Class Pengurus",
+                        "type": "integer"
+                    },
+                    "warga_id": {
+                        "type": "integer"
+                    },
+                    "jabatan_id": {
+                        "type": "integer"
+                    },
+                    "created_by": {
+                        "type": "string"
+                    },
+                    "updated_by": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "deleted_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Pengurus"
+                }
+            },
+            "Warga": {
+                "title": "Warga Model",
+                "description": "Warga Model",
+                "properties": {
+                    "id": {
+                        "description": "Class Warga",
+                        "type": "integer"
+                    },
+                    "no_kk": {
+                        "type": "string"
+                    },
+                    "nik": {
+                        "type": "string"
+                    },
+                    "nama": {
+                        "type": "string"
+                    },
+                    "jenis_kelamin": {
+                        "type": "integer"
+                    },
+                    "tgl_lahir": {
+                        "type": "string"
+                    },
+                    "alamat_ktp": {
+                        "type": "string"
+                    },
+                    "blok": {
+                        "type": "string"
+                    },
+                    "nomor": {
+                        "type": "integer"
+                    },
+                    "rt": {
+                        "type": "integer"
+                    },
+                    "agama": {
+                        "type": "boolean"
+                    },
+                    "pekerjaan": {
+                        "type": "string"
+                    },
+                    "no_telp": {
+                        "type": "string"
+                    },
+                    "status_warga": {
+                        "type": "string"
+                    },
+                    "status_kawin": {
+                        "type": "integer"
+                    },
+                    "status_sosial": {
+                        "type": "string"
+                    },
+                    "catatan": {
+                        "type": "string"
+                    },
+                    "kk_pj": {
+                        "type": "integer"
+                    },
+                    "created_by": {
+                        "type": "string"
+                    },
+                    "updated_by": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "deleted_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Warga"
+                }
+            }
+        }
+    }
+}
