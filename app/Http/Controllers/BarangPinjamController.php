@@ -55,46 +55,6 @@ class BarangPinjamController extends Controller
         return BarangPinjamResource::collection($barangPinjams);
     }
 
-    /**
-     * @OA\Post(
-     *      path="/barang-pinjams",
-     *      tags={"BarangPinjam"},
-     *      summary="Store BarangPinjam",
-     *      @OA\RequestBody(
-     *         description="Body",
-     *         required=true,
-     *         @OA\JsonContent(
-     *              @OA\Property(property="acara_id", ref="#/components/schemas/BarangPinjam/properties/acara_id"),
-*              @OA\Property(property="jenis_barang", ref="#/components/schemas/BarangPinjam/properties/jenis_barang"),
-*              @OA\Property(property="jml_barang", ref="#/components/schemas/BarangPinjam/properties/jml_barang"),
-*              @OA\Property(property="catatan", ref="#/components/schemas/BarangPinjam/properties/catatan"),
-*              @OA\Property(property="storage", ref="#/components/schemas/BarangPinjam/properties/storage"),
-*              @OA\Property(property="kepemilikan", ref="#/components/schemas/BarangPinjam/properties/kepemilikan"),
-
-     *         ),
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="success", type="boolean", example="true"),
-     *              @OA\Property(property="message", type="string", example="Data sukses disimpan."),
-     *      ),
-     *      @OA\Response(
-     *          response="422",
-     *          description="error",
-     *          @OA\JsonContent(
-    *              @OA\Property(property="acara_id", type="array", @OA\Items(example={"acara_id field is required."})),
-*              @OA\Property(property="jenis_barang", type="array", @OA\Items(example={"jenis_barang field is required."})),
-*              @OA\Property(property="jml_barang", type="array", @OA\Items(example={"jml_barang field is required."})),
-*              @OA\Property(property="catatan", type="array", @OA\Items(example={"catatan field is required."})),
-*              @OA\Property(property="storage", type="array", @OA\Items(example={"storage field is required."})),
-*              @OA\Property(property="kepemilikan", type="array", @OA\Items(example={"kepemilikan field is required."})),
-
-     *          ),
-     *      ),
-     * )
-     */
     public function store(StoreBarangPinjamRequest $request)
     {
         try {
