@@ -15,7 +15,7 @@ class BarangMasukController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/barang-masuks",
+     *      path="/barang-masuk",
      *      tags={"BarangMasuk"},
      *      summary="List of BarangMasuk",
      *      @OA\Parameter(in="query", required=false, name="filter[name]", @OA\Schema(type="string"), example="keyword"),
@@ -56,7 +56,7 @@ class BarangMasukController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/barang-masuks",
+     *      path="/barang-masuk",
      *      tags={"BarangMasuk"},
      *      summary="Store BarangMasuk",
      *      @OA\RequestBody(
@@ -116,7 +116,7 @@ class BarangMasukController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/barang-masuks/{id}",
+     *      path="/barang-masuk/{id}",
      *      tags={"BarangMasuk"},
      *      summary="BarangMasuk details",
      *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="BarangMasuk ID"),
@@ -133,7 +133,7 @@ class BarangMasukController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/barang-masuks/{id}",
+     *      path="/barang-masuk/{id}",
      *      tags={"BarangMasuk"},
      *      summary="Update BarangMasuk",
      *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="BarangMasuk ID"),
@@ -182,7 +182,7 @@ class BarangMasukController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/barang-masuks/{id}",
+     *      path="/barang-masuk/{id}",
      *      tags={"BarangMasuk"},
      *      summary="BarangMasuk Removal",
      *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="BarangMasuk ID"),
@@ -201,7 +201,7 @@ class BarangMasukController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/barang-masuks/schema",
+     *      path="/barang-masuk/schema",
      *      tags={"BarangMasuk"},
      *      summary="Schema of BarangMasuk",
      *      @OA\Response(
@@ -217,7 +217,7 @@ class BarangMasukController extends Controller
             'name' => 'barang_masuk',
             'module' => 'BarangMasuk',
             'primary_key' => 'id',
-            'endpoint' => '/barang-masuks',
+            'endpoint' => '/barang-masuk',
             'scheme' => array_values($fields),
         ];
 
