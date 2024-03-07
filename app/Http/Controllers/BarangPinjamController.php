@@ -16,7 +16,7 @@ class BarangPinjamController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/barang-pinjams",
+     *      path="/barang-pinjam",
      *      tags={"BarangPinjam"},
      *      summary="List of BarangPinjam",
      *      @OA\Parameter(in="query", required=false, name="filter[name]", @OA\Schema(type="string"), example="keyword"),
@@ -76,7 +76,7 @@ class BarangPinjamController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/barang-pinjams/{id}",
+     *      path="/barang-pinjam/{id}",
      *      tags={"BarangPinjam"},
      *      summary="BarangPinjam details",
      *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="BarangPinjam ID"),
@@ -93,7 +93,7 @@ class BarangPinjamController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/barang-pinjams/{id}",
+     *      path="/barang-pinjam/{id}",
      *      tags={"BarangPinjam"},
      *      summary="Update BarangPinjam",
      *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="BarangPinjam ID"),
@@ -142,7 +142,7 @@ class BarangPinjamController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/barang-pinjams/{id}",
+     *      path="/barang-pinjam/{id}",
      *      tags={"BarangPinjam"},
      *      summary="BarangPinjam Removal",
      *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="BarangPinjam ID"),
@@ -161,7 +161,7 @@ class BarangPinjamController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/barang-pinjams/schema",
+     *      path="/barang-pinjam/schema",
      *      tags={"BarangPinjam"},
      *      summary="Schema of BarangPinjam",
      *      @OA\Response(
@@ -177,7 +177,7 @@ class BarangPinjamController extends Controller
             'name' => 'barang_pinjam',
             'module' => 'BarangPinjam',
             'primary_key' => 'id',
-            'endpoint' => '/barang-pinjams',
+            'endpoint' => '/barang-pinjam',
             'scheme' => array_values($fields),
         ];
 

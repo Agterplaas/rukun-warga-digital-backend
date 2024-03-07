@@ -12,13 +12,13 @@
         }
     ],
     "paths": {
-        "/barang-masuks": {
+        "/barang-masuk": {
             "get": {
                 "tags": [
                     "BarangMasuk"
                 ],
                 "summary": "List of BarangMasuk",
-                "operationId": "382606c5e3d5cacf62cca5d57849ec59",
+                "operationId": "a12c476d1386ead3c170188ad560e700",
                 "parameters": [
                     {
                         "name": "filter[name]",
@@ -77,7 +77,7 @@
                     "BarangMasuk"
                 ],
                 "summary": "Store BarangMasuk",
-                "operationId": "d79732e78f1986e12a5f6e44e292a61b",
+                "operationId": "ec9d57a85622af60ae036e6aae4b4498",
                 "requestBody": {
                     "description": "Body",
                     "required": true,
@@ -193,13 +193,13 @@
                 }
             }
         },
-        "/barang-masuks/{id}": {
+        "/barang-masuk/{id}": {
             "get": {
                 "tags": [
                     "BarangMasuk"
                 ],
                 "summary": "BarangMasuk details",
-                "operationId": "933b84da47a8d42d25178a07b5a2d3a6",
+                "operationId": "3b3abc51b132746f452ca5333b354692",
                 "parameters": [
                     {
                         "name": "id",
@@ -222,7 +222,7 @@
                     "BarangMasuk"
                 ],
                 "summary": "Update BarangMasuk",
-                "operationId": "af270bd55ab6b85e09cbd314fe6fc72f",
+                "operationId": "d2d705079305a0d884577390bacd636e",
                 "parameters": [
                     {
                         "name": "id",
@@ -353,7 +353,7 @@
                     "BarangMasuk"
                 ],
                 "summary": "BarangMasuk Removal",
-                "operationId": "8ed14751800c8b264c0be146a432af4f",
+                "operationId": "6499fb0441d0a5a31290f7a9b527ee01",
                 "parameters": [
                     {
                         "name": "id",
@@ -372,13 +372,13 @@
                 }
             }
         },
-        "/barang-masuks/schema": {
+        "/barang-masuk/schema": {
             "get": {
                 "tags": [
                     "BarangMasuk"
                 ],
                 "summary": "Schema of BarangMasuk",
-                "operationId": "cda5a097844270c927fec06d1c006701",
+                "operationId": "c3d8ade53c9a842665564ed5790615be",
                 "responses": {
                     "200": {
                         "description": "success"
@@ -386,13 +386,13 @@
                 }
             }
         },
-        "/barang-pinjams": {
+        "/barang-pinjam": {
             "get": {
                 "tags": [
                     "BarangPinjam"
                 ],
                 "summary": "List of BarangPinjam",
-                "operationId": "800b60fca2f6e583dada52c5d74f5e00",
+                "operationId": "3fde91ce3a354bab81b858f147a40e43",
                 "parameters": [
                     {
                         "name": "filter[name]",
@@ -447,13 +447,13 @@
                 }
             }
         },
-        "/barang-pinjams/{id}": {
+        "/barang-pinjam/{id}": {
             "get": {
                 "tags": [
                     "BarangPinjam"
                 ],
                 "summary": "BarangPinjam details",
-                "operationId": "6f5261029170ced89e4a51559fd83a7d",
+                "operationId": "fb7821c7e1e2806ed007b6f2537c294c",
                 "parameters": [
                     {
                         "name": "id",
@@ -476,7 +476,7 @@
                     "BarangPinjam"
                 ],
                 "summary": "Update BarangPinjam",
-                "operationId": "0770fc9125b206ca5bb8245a28a99eea",
+                "operationId": "5d95130f87b014ac4ccca090af0f4dd4",
                 "parameters": [
                     {
                         "name": "id",
@@ -607,7 +607,7 @@
                     "BarangPinjam"
                 ],
                 "summary": "BarangPinjam Removal",
-                "operationId": "4ddac4cda2a0052bf565dc7cbf85b7c7",
+                "operationId": "ef85c2cd1b958fd90223dab9b9969ab6",
                 "parameters": [
                     {
                         "name": "id",
@@ -626,13 +626,13 @@
                 }
             }
         },
-        "/barang-pinjams/schema": {
+        "/barang-pinjam/schema": {
             "get": {
                 "tags": [
                     "BarangPinjam"
                 ],
                 "summary": "Schema of BarangPinjam",
-                "operationId": "4160b6b1f366dcae8b9dbf968bf5ec6b",
+                "operationId": "2c7f939011d1b60b00fe2b709b29a063",
                 "responses": {
                     "200": {
                         "description": "success"
