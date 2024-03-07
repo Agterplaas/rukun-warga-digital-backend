@@ -50,9 +50,12 @@ Route::prefix('auth')->group(function() {
 
     Route::post('logout', LogoutController::class);
 });
-Route::get('barang-masuks/schema', [\App\Http\Controllers\BarangMasukController::class, 'schema']);
-Route::resource('barang-masuks', \App\Http\Controllers\BarangMasukController::class);
-Route::get('barang-pinjams/schema', [\App\Http\Controllers\BarangPinjamController::class, 'schema']);
-Route::resource('barang-pinjams', \App\Http\Controllers\BarangPinjamController::class);
-Route::get('barang-hilangs/schema', [\App\Http\Controllers\BarangHilangController::class, 'schema']);
-Route::resource('barang-hilangs', \App\Http\Controllers\BarangHilangController::class);
+
+Route::get('barang-masuk/schema', [\App\Http\Controllers\BarangMasukController::class, 'schema']);
+Route::resource('barang-masuk', \App\Http\Controllers\BarangMasukController::class);
+
+Route::get('barang-pinjam/schema', [\App\Http\Controllers\BarangPinjamController::class, 'schema']);
+Route::resource('barang-pinjam', \App\Http\Controllers\BarangPinjamController::class);
+
+Route::get('barang-hilang/schema', [\App\Http\Controllers\BarangHilangController::class, 'schema']);
+Route::resource('barang-hilang', \App\Http\Controllers\BarangHilangController::class);
