@@ -13,24 +13,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class PengurusController extends Controller
 {
-    /**
-     * @OA\Get(
-     *      path="/pengurus",
-     *      tags={"Pengurus"},
-     *      summary="List of Pengurus",
-     *
-     *      @OA\Parameter(in="query", required=false, name="filter[name]", @OA\Schema(type="string"), example="keyword"),
-     *      @OA\Parameter(in="query", required=false, name="filter[keyword]", @OA\Schema(type="string"), example="keyword"),
-     *      @OA\Parameter(in="query", required=false, name="sort", @OA\Schema(type="string"), example="name"),
-     *      @OA\Parameter(in="query", required=false, name="page", @OA\Schema(type="string"), example="1"),
-     *      @OA\Parameter(in="query", required=false, name="rows", @OA\Schema(type="string"), example="10"),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *      ),
-     * )
-     */
     public function index(Request $request)
     {
         $rows = 10;
@@ -57,48 +39,6 @@ class PengurusController extends Controller
         return PengurusResource::collection($pengurus);
     }
 
-    /**
-     * @OA\Post(
-     *      path="/pengurus",
-     *      tags={"Pengurus"},
-     *      summary="Store Pengurus",
-     *
-     *      @OA\RequestBody(
-     *         description="Body",
-     *         required=true,
-     *
-     *         @OA\JsonContent(
-     *
-     *              @OA\Property(property="warga_id", ref="#/components/schemas/Pengurus/properties/warga_id"),
-     *              @OA\Property(property="jabatan_id", ref="#/components/schemas/Pengurus/properties/jabatan_id"),
-
-     *         ),
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="success", type="boolean", example="true"),
-     *              @OA\Property(property="message", type="string", example="Data sukses disimpan."),
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response="422",
-     *          description="error",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="warga_id", type="array", @OA\Items(example={"warga_id field is required."})),
-     *              @OA\Property(property="jabatan_id", type="array", @OA\Items(example={"jabatan_id field is required."})),
-
-     *          ),
-     *      ),
-     * )
-     */
     public function store(StorePengurusRequest $request)
     {
         $request->merge(['jabatan_id' => json_encode($request->jabatan_id)]);
@@ -107,69 +47,11 @@ class PengurusController extends Controller
         return $this->sendSuccess(new PengurusResource($pengurus), 'Data berhasil disimpan.', 201);
     }
 
-    /**
-     * @OA\Get(
-     *      path="/pengurus/{id}",
-     *      tags={"Pengurus"},
-     *      summary="Pengurus details",
-     *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Pengurus ID"),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *      ),
-     * )
-     */
     public function show(Pengurus $pengurus)
     {
         return $this->sendSuccess(new PengurusResource($pengurus), 'Data berhasil ditampilkan.');
     }
 
-    /**
-     * @OA\Put(
-     *      path="/pengurus/{id}",
-     *      tags={"Pengurus"},
-     *      summary="Update Pengurus",
-     *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Pengurus ID"),
-     *
-     *      @OA\RequestBody(
-     *         description="Body",
-     *         required=true,
-     *
-     *         @OA\JsonContent(
-     *
-     *              @OA\Property(property="warga_id", ref="#/components/schemas/Pengurus/properties/warga_id"),
-     *              @OA\Property(property="jabatan_id", ref="#/components/schemas/Pengurus/properties/jabatan_id"),
-
-     *         ),
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="success", type="boolean", example="true"),
-     *              @OA\Property(property="message", type="string", example="Data sukses disimpan."),
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response="422",
-     *          description="error",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="warga_id", type="array", @OA\Items(example={"warga_id field is required."})),
-     *              @OA\Property(property="jabatan_id", type="array", @OA\Items(example={"jabatan_id field is required."})),
-
-     *          ),
-     *      ),
-     * )
-     */
     public function update(StorePengurusRequest $request, Pengurus $pengurus)
     {
         $request->merge(['jabatan_id' => json_encode($request->jabatan_id)]);
@@ -181,20 +63,6 @@ class PengurusController extends Controller
         return $this->sendSuccess(new PengurusResource($pengurus), 'Data berhasil disimpan.');
     }
 
-    /**
-     * @OA\Delete(
-     *      path="/pengurus/{id}",
-     *      tags={"Pengurus"},
-     *      summary="Pengurus Removal",
-     *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Pengurus ID"),
-     *
-     *      @OA\Response(
-     *          response=204,
-     *          description="Response success no content",
-     *      ),
-     * )
-     */
     public function destroy(Pengurus $pengurus)
     {
         $pengurus->delete();
@@ -202,18 +70,6 @@ class PengurusController extends Controller
         return $this->sendSuccess([], null, 204);
     }
 
-    /**
-     * @OA\Get(
-     *      path="/pengurus/schema",
-     *      tags={"Pengurus"},
-     *      summary="Schema of Pengurus",
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *      ),
-     * )
-     */
     public function schema(Request $request)
     {
         $fields = DB::select('describe pengurus');

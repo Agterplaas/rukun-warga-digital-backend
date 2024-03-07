@@ -15,24 +15,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class WargaController extends Controller
 {
-    /**
-     * @OA\Get(
-     *      path="/warga",
-     *      tags={"Warga"},
-     *      summary="List of Warga",
-     *
-     *      @OA\Parameter(in="query", required=false, name="filter[name]", @OA\Schema(type="string"), example="keyword"),
-     *      @OA\Parameter(in="query", required=false, name="filter[keyword]", @OA\Schema(type="string"), example="keyword"),
-     *      @OA\Parameter(in="query", required=false, name="sort", @OA\Schema(type="string"), example="name"),
-     *      @OA\Parameter(in="query", required=false, name="page", @OA\Schema(type="string"), example="1"),
-     *      @OA\Parameter(in="query", required=false, name="rows", @OA\Schema(type="string"), example="10"),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *      ),
-     * )
-     */
     public function index(Request $request)
     {
         $rows = 100;
@@ -58,54 +40,6 @@ class WargaController extends Controller
         return WargaResource::collection($warga);
     }
 
-    /**
-     * @OA\Post(
-     *      path="/warga",
-     *      tags={"Warga"},
-     *      summary="Store Warga",
-     *
-     *      @OA\RequestBody(
-     *         description="Body",
-     *         required=true,
-     *
-     *         @OA\JsonContent(
-     *
-     *              @OA\Property(property="nik", ref="#/components/schemas/Warga/properties/nik"),
-     *              @OA\Property(property="alamat_ktp", ref="#/components/schemas/Warga/properties/alamat_ktp"),
-     *              @OA\Property(property="blok", ref="#/components/schemas/Warga/properties/blok"),
-     *              @OA\Property(property="nomor", ref="#/components/schemas/Warga/properties/nomor"),
-     *              @OA\Property(property="rt", ref="#/components/schemas/Warga/properties/rt"),
-
-     *         ),
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="success", type="boolean", example="true"),
-     *              @OA\Property(property="message", type="string", example="Data sukses disimpan."),
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response="422",
-     *          description="error",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="nik", type="array", @OA\Items(example={"nik field is required."})),
-     *              @OA\Property(property="alamat_ktp", type="array", @OA\Items(example={"alamat_ktp field is required."})),
-     *              @OA\Property(property="blok", type="array", @OA\Items(example={"blok field is required."})),
-     *              @OA\Property(property="nomor", type="array", @OA\Items(example={"nomor field is required."})),
-     *              @OA\Property(property="rt", type="array", @OA\Items(example={"rt field is required."})),
-
-     *          ),
-     *      ),
-     * )
-     */
     public function store(StoreWargaRequest $request)
     {
         $requestData = $request->all();
@@ -117,61 +51,6 @@ class WargaController extends Controller
         return $this->sendSuccess(new WargaResource($warga), 'Data berhasil disimpan.', 201);
     }
 
-    /**
-     * @OA\Post(
-     *      path="/warga/import",
-     *      tags={"Warga"},
-     *      summary="Import data from Excel to SQL table",
-     *      security={{"bearerAuth":{}}},
-     *
-     *      @OA\Parameter(
-     *          in="path",
-     *          name="audit",
-     *          required=true,
-     *
-     *          @OA\Schema(type="integer"),
-     *          description="Audit ID"
-     *      ),
-     *
-     *      @OA\RequestBody(
-     *          required=true,
-     *          description="Excel file for data import",
-     *
-     *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
-     *
-     *              @OA\Schema(
-     *                  type="object",
-     *
-     *                  @OA\Property(
-     *                      property="file_template",
-     *                      type="file",
-     *                      format="binary",
-     *                      description="Excel file for data import"
-     *                  ),
-     *                  @OA\Property(
-     *                      property="is_imported",
-     *                      type="boolean",
-     *                      description="Set to TRUE to indicate that the data is imported"
-     *                  ),
-     *              )
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="OK. The data import and storage were successful.",
-     *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthorized. The 'is_imported' parameter must be set to TRUE for using this resource.",
-     *      ),
-     *      @OA\Response(
-     *          response=422,
-     *          description="Unprocessable Entity. Invalid input or data could not be processed.",
-     *      ),
-     * )
-     */
     public function documentExcelImport(ImportedWargaRequest $request)
     {
         $import = new ExcelToArrayImport();
@@ -338,39 +217,11 @@ class WargaController extends Controller
         return $this->sendSuccess(null, 'Data berhasil disimpan.', 201);
     }
 
-    /**
-     * @OA\Get(
-     *      path="/warga/{warga}",
-     *      tags={"Warga"},
-     *      summary="Warga details",
-     *
-     *      @OA\Parameter(in="path", required=true, name="warga", @OA\Schema(type="integer"), description="Warga ID"),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *      ),
-     * )
-     */
     public function show(Warga $warga)
     {
         return $this->sendSuccess(new WargaResource($warga), 'Data berhasil ditampilkan.');
     }
 
-    /**
-     * @OA\Get(
-     *      path="/warga/{no_kk}/anggota",
-     *      tags={"Warga"},
-     *      summary="Anggota warga details",
-     *
-     *      @OA\Parameter(in="path", required=true, name="id", @OA\Schema(type="integer"), description="Warga ID"),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *      ),
-     * )
-     */
     public function showByNoKK($no_kk)
     {
         $encryptedNoKKs = Warga::pluck('no_kk');
@@ -388,56 +239,6 @@ class WargaController extends Controller
         return $this->sendSuccess(WargaResource::collection(collect($matchingWarga)), 'Data berhasil ditampilkan.');
     }
 
-    /**
-     * @OA\Put(
-     *      path="/warga/{warga}",
-     *      tags={"Warga"},
-     *      summary="Update Warga",
-     *
-     *      @OA\Parameter(in="path", required=true, name="warga", @OA\Schema(type="integer"), description="Warga ID"),
-     *
-     *      @OA\RequestBody(
-     *         description="Body",
-     *         required=true,
-     *
-     *         @OA\JsonContent(
-     *
-     *              @OA\Property(property="nik", ref="#/components/schemas/Warga/properties/nik"),
-     *              @OA\Property(property="alamat_ktp", ref="#/components/schemas/Warga/properties/alamat_ktp"),
-     *              @OA\Property(property="blok", ref="#/components/schemas/Warga/properties/blok"),
-     *              @OA\Property(property="nomor", ref="#/components/schemas/Warga/properties/nomor"),
-     *              @OA\Property(property="rt", ref="#/components/schemas/Warga/properties/rt"),
-
-     *         ),
-     *      ),
-     *
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="success", type="boolean", example="true"),
-     *              @OA\Property(property="message", type="string", example="Data sukses disimpan."),
-     *          )
-     *      ),
-     *
-     *      @OA\Response(
-     *          response="422",
-     *          description="error",
-     *
-     *          @OA\JsonContent(
-     *
-     *              @OA\Property(property="nik", type="array", @OA\Items(example={"nik field is required."})),
-     *              @OA\Property(property="alamat_ktp", type="array", @OA\Items(example={"alamat_ktp field is required."})),
-     *              @OA\Property(property="blok", type="array", @OA\Items(example={"blok field is required."})),
-     *              @OA\Property(property="nomor", type="array", @OA\Items(example={"nomor field is required."})),
-     *              @OA\Property(property="rt", type="array", @OA\Items(example={"rt field is required."})),
-
-     *          ),
-     *      ),
-     * )
-     */
     public function update(StoreWargaRequest $request, Warga $warga)
     {
         $requestData = $request->all();
@@ -449,20 +250,6 @@ class WargaController extends Controller
         return $this->sendSuccess(new WargaResource($warga), 'Data berhasil diperbarui.');
     }
 
-    /**
-     * @OA\Delete(
-     *      path="/warga/{warga}",
-     *      tags={"Warga"},
-     *      summary="Warga Removal",
-     *
-     *      @OA\Parameter(in="path", required=true, name="warga", @OA\Schema(type="integer"), description="Warga ID"),
-     *
-     *      @OA\Response(
-     *          response=204,
-     *          description="Response success no content",
-     *      ),
-     * )
-     */
     public function destroy(Warga $warga)
     {
         $warga->delete();
