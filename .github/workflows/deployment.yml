@@ -45,5 +45,7 @@ jobs:
         script: |
           cd /var/www/rukun-warga-digital
           git pull origin master
-          composer install
-          php artisan migrate
+          git status
+          composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts --no-dev --optimize-autoloader -o
+          php artisan l5-swagger:generate
+          php artisan migrate --step
