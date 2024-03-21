@@ -47,5 +47,4 @@ jobs:
           git pull origin master
           git status
           composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader -o
-          php artisan l5-swagger:generate
           php artisan migrate --step
