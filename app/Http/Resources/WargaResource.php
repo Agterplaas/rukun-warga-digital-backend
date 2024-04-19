@@ -24,25 +24,39 @@ class WargaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-
-        $tgl_lahir = new DateTime($this->tgl_lahir);
+        $tglLahirDekripsi = decrypt($this->tgl_lahir);
+        $tgl_lahir = new DateTime($tglLahirDekripsi);
         $tgl_sekarang = new DateTime();
         $selisih = $tgl_lahir->diff($tgl_sekarang);
         $usia = $selisih->y;
-
-        $tglLahir = $this->tgl_lahir;
-        $carbonTglLahir = Carbon::parse($tglLahir);
+    
+        // Tentukan kategori umur berdasarkan usia
+        if ($usia <= 4) {
+            $kategori_umur = 'Balita';
+        } elseif ($usia >= 5 && $usia <= 12) {
+            $kategori_umur = 'Anak-anak';
+        } elseif ($usia >= 13 && $usia <= 17) {
+            $kategori_umur = 'Remaja';
+        } elseif ($usia >= 18 && $usia <= 64) {
+            $kategori_umur = 'Dewasa';
+        } else {
+            $kategori_umur = 'Lansia';
+        }
+    
+        $carbonTglLahir = Carbon::parse($tgl_lahir);
         $namaBulan = BulanIndonesiaEnum::label($carbonTglLahir->month);
         $tanggalFormatted = $carbonTglLahir->format('d').' '.$namaBulan.' '.$carbonTglLahir->format('Y');
-
+    
         return [
             'id' => $this->id,
             'no_kk' => decrypt($this->no_kk),
             'nik' => decrypt($this->nik),
-            'nama' => $this->nama,
+            'nama' => decrypt($this->nama),
             'jenis_kelamin' => JenisKelaminEnum::label($this->jenis_kelamin),
             'tgl_lahir' => $tanggalFormatted,
+            'tempat_lahir' => $this->tempat_lahir,
             'usia' => $usia,
+            'kategori_umur' => $kategori_umur, // Tambahkan kategori umur ke dalam respon
             'alamat_ktp' => $this->alamat_ktp,
             'blok' => strtoupper($this->blok),
             'nomor' => $this->nomor,

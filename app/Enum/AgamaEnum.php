@@ -14,6 +14,8 @@ enum AgamaEnum: int
 
     const BUDDHA = 4;
 
+    const KONGHUCU = 5;
+
     public static function list()
     {
         return [
@@ -22,6 +24,7 @@ enum AgamaEnum: int
             self::KRISTEN_PROTESTAN => 'Kristen Protestan',
             self::HINDU => 'Hindu',
             self::BUDDHA => 'Buddha',
+            self::KONGHUCU => 'Konghucu',
         ];
     }
 

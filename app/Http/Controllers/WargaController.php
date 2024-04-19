@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\AgamaEnum;
 use App\Http\Requests\ImportedWargaRequest;
 use App\Http\Requests\StoreWargaRequest;
 use App\Http\Resources\WargaResource;
@@ -9,6 +10,7 @@ use App\Imports\ExcelToArrayImport;
 use App\Models\Warga;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -39,24 +41,132 @@ class WargaController extends Controller
         if ($request->filled('rows')) {
             $rows = $request->rows;
         }
-
+    
         $perPage = $request->query('per_page', $rows);
-
+    
         $warga = QueryBuilder::for(Warga::class)
             ->allowedFilters([
                 AllowedFilter::callback(
-                    'keyword',
-                    fn (Builder $query, $value) => $query->where('nama', 'like', '%'.$value.'%')
-                ),
+                    'nik',
+                    function (Builder $query, $value) {
+                        // Dekripsi semua data 'nik' di dalam database
+                        $encryptedNIKs = Warga::pluck('nik');
+                        $decryptedNIKs = $encryptedNIKs->map(function ($encryptedNIK) {
+                            return decrypt($encryptedNIK);
+                        });
+                
+                        $matchingWarga = [];
+                
+                        // Mencari data yang sesuai dengan nilai 'keyword'
+                        foreach ($decryptedNIKs as $index => $decryptedNIK) {
+                            if (strpos($decryptedNIK, $value) !== false) {
+                                // Jika ditemukan, tambahkan data yang sesuai ke dalam array matchingWarga
+                                $matchingWarga[] = Warga::where('nik', $encryptedNIKs[$index])->first();
+                            }
+                        }
+                
+                        // Ambil ID dari data yang sesuai
+                        $matchingIds = collect($matchingWarga)->pluck('id');
+                
+                        // Gunakan ID-ID yang ditemukan untuk filter
+                        $query->whereIn('id', $matchingIds);
+                    }
+                ),                
+                AllowedFilter::callback(
+                    'nama',
+                    function (Builder $query, $value) {
+                        // Dekripsi semua data 'nama' di dalam database
+                        $encryptedNames = Warga::pluck('nama');
+                        $decryptedNames = $encryptedNames->map(function ($encryptedName) {
+                            return decrypt($encryptedName);
+                        });
+                
+                        $matchingWarga = [];
+                
+                        // Mencari data yang sesuai dengan nilai 'keyword'
+                        foreach ($decryptedNames as $index => $decryptedName) {
+                            if (strpos($decryptedName, $value) !== false) {
+                                // Jika ditemukan, tambahkan data yang sesuai ke dalam array matchingWarga
+                                $matchingWarga[] = Warga::where('nama', $encryptedNames[$index])->first();
+                            }
+                        }
+                
+                        // Ambil ID dari data yang sesuai
+                        $matchingIds = collect($matchingWarga)->pluck('id');
+                
+                        // Gunakan ID-ID yang ditemukan untuk filter
+                        $query->whereIn('id', $matchingIds);
+                 }),   
+                 AllowedFilter::callback('grup_umur', function ($query, $value, $property) {
+                    // Dekripsi semua data 'tgl_lahir' di dalam database
+                    $encryptedTglLahir = Warga::pluck('tgl_lahir');
+                    $decryptedTglLahir = $encryptedTglLahir->map(function ($encryptedDate) {
+                        return decrypt($encryptedDate);
+                    });
+        
+                    $matchingWarga = [];
+        
+                    // Mencari data yang sesuai dengan grup umur
+                    foreach ($decryptedTglLahir as $index => $decryptedDate) {
+                        $tgl_lahir = new \DateTime($decryptedDate);
+                        $tgl_sekarang = new \DateTime();
+                        $selisih = $tgl_lahir->diff($tgl_sekarang);
+                        $usia = $selisih->y;
+        
+                        switch ($value) {
+                            case 'balita':
+                                if ($usia <= 4) {
+                                    $matchingWarga[] = Warga::where('tgl_lahir', $encryptedTglLahir[$index])->first();
+                                }
+                                break;
+                            case 'anak_anak':
+                                if ($usia >= 5 && $usia <= 12) {
+                                    $matchingWarga[] = Warga::where('tgl_lahir', $encryptedTglLahir[$index])->first();
+                                }
+                                break;
+                            case 'remaja':
+                                if ($usia >= 13 && $usia <= 17) {
+                                    $matchingWarga[] = Warga::where('tgl_lahir', $encryptedTglLahir[$index])->first();
+                                }
+                                break;
+                            case 'dewasa':
+                                if ($usia >= 18 && $usia <= 64) {
+                                    $matchingWarga[] = Warga::where('tgl_lahir', $encryptedTglLahir[$index])->first();
+                                }
+                                break;
+                            case 'lansia':
+                                if ($usia >= 65) {
+                                    $matchingWarga[] = Warga::where('tgl_lahir', $encryptedTglLahir[$index])->first();
+                                }
+                                break;
+                        }
+                    }
+        
+                    // Ambil ID dari data yang sesuai
+                    $matchingIds = collect($matchingWarga)->pluck('id');
+        
+                    // Gunakan ID-ID yang ditemukan untuk filter
+                    $query->whereIn('id', $matchingIds);
+                }),
                 AllowedFilter::exact('id'),
-                'nama',
+                'alamat_ktp',
+                'pekerjaan',
+                'rt',
+                'blok',
+                'nomor',
+                'agama',
+                'status_kawin',
+                'status_sosial',
+                'status_warga',
+                'status_pekerjaan'
             ])
-            ->allowedSorts('nama', 'jenis_kelamin', 'tgl_lahir', 'alamat_ktp', 'blok', 'nomor', 'rt', 'agama', 'pekerjaan', 'no_telp', 'status_warga', 'status_kawin', 'status_sosial', 'catatan', 'kk_pj')
+            ->allowedSorts('nama', 'jenis_kelamin', 'tgl_lahir', 'alamat_ktp', 'blok', 'nomor', 'rt', 'agama', 'pekerjaan', 'no_telp', 'agama', 'status_kawin', 'status_sosial', 'catatan', 'kk_pj')
             ->paginate($perPage)
             ->appends($request->query());
-
+    
         return WargaResource::collection($warga);
     }
+    
 
     /**
      * @OA\Post(
@@ -109,8 +219,10 @@ class WargaController extends Controller
     public function store(StoreWargaRequest $request)
     {
         $requestData = $request->all();
+        $requestData['nama'] = encrypt($request->input('nama'));
         $requestData['no_kk'] = encrypt($request->input('no_kk'));
         $requestData['nik'] = encrypt($request->input('nik'));
+        $requestData['tgl_lahir'] = encrypt($request->input('tgl_lahir'));
 
         $warga = Warga::create($requestData);
 
@@ -185,9 +297,10 @@ class WargaController extends Controller
                         return [
                             'no_kk' => encrypt($item['no_kk']),
                             'nik' => encrypt($item['nik']),
-                            'nama' => $item['nama_lengkap'],
+                            'nama' => encrypt($item['nama_lengkap']),
+                            'tgl_lahir' => encrypt($item['tgl_lahir']),
+                            'tempat_lahir' => $item['tempat_lahir'],
                             'jenis_kelamin' => $item['jenis_kelamin'],
-                            'tgl_lahir' => $item['tanggal_lahir'],
                             'alamat_ktp' => $item['alamat_ktp'],
                             'blok' => $item['blok'],
                             'nomor' => $item['nomor'],
@@ -239,6 +352,9 @@ class WargaController extends Controller
                     break;
                 case 'BUDDHA':
                     $item['agama'] = 4;
+                    break;
+                case 'KONGHUCU':
+                    $item['agama'] = 5;
                     break;
                 default:
                     break;
@@ -441,8 +557,10 @@ class WargaController extends Controller
     public function update(StoreWargaRequest $request, Warga $warga)
     {
         $requestData = $request->all();
+        $requestData['nama'] = encrypt($request->input('nama'));
         $requestData['no_kk'] = encrypt($request->input('no_kk'));
         $requestData['nik'] = encrypt($request->input('nik'));
+        $requestData['tgl_lahir'] = encrypt($request->input('tgl_lahir'));
 
         $warga->update($requestData);
 
