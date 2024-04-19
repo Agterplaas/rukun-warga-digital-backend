@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\JabatanController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get('/warga', [\App\Http\Controllers\WargaController::class, 'index']);
 Route::post('/warga', [\App\Http\Controllers\WargaController::class, 'store']);
@@ -43,7 +40,7 @@ Route::get('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::cl
 Route::put('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'update']);
 Route::delete('/pengurus/{pengurus}', [\App\Http\Controllers\PengurusController::class, 'destroy']);
 
-route::prefix('/master')->group(function () {
+Route::prefix('/master')->group(function () {
     Route::resource('jabatan', JabatanController::class);
 });
 
@@ -55,3 +52,18 @@ Route::get('kategori-barangs/schema', [\App\Http\Controllers\KategoriBarangContr
 Route::resource('kategori-barangs', \App\Http\Controllers\KategoriBarangController::class);
 Route::get('jenis-barangs/schema', [\App\Http\Controllers\JenisBarangController::class, 'schema']);
 Route::resource('jenis-barangs', \App\Http\Controllers\JenisBarangController::class);
+Route::prefix('auth')->group(function() {
+
+    Route::post('login', LoginController::class);
+
+    Route::post('logout', LogoutController::class);
+});
+
+Route::get('barang-masuk/schema', [\App\Http\Controllers\BarangMasukController::class, 'schema']);
+Route::resource('barang-masuk', \App\Http\Controllers\BarangMasukController::class);
+
+Route::get('barang-pinjam/schema', [\App\Http\Controllers\BarangPinjamController::class, 'schema']);
+Route::resource('barang-pinjam', \App\Http\Controllers\BarangPinjamController::class);
+
+Route::get('barang-hilang/schema', [\App\Http\Controllers\BarangHilangController::class, 'schema']);
+Route::resource('barang-hilang', \App\Http\Controllers\BarangHilangController::class);

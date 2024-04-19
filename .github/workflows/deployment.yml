@@ -15,7 +15,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
@@ -46,9 +46,5 @@ jobs:
           cd /var/www/rukun-warga-digital
           git pull origin master
           git status
-          composer install --prefer-dist --no-ansi --no-interaction  --no-progress --no-scripts --no-dev --optimize-autoloader -o
-          php artisan migrate
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-          php artisan cache:clear
+          composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts --optimize-autoloader -o
+          php artisan migrate --step
