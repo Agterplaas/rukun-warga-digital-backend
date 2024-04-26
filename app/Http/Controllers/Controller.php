@@ -27,6 +27,12 @@ class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+
     public function sendSuccess($result, $message, $code = 200)
     {
         $response = [];
